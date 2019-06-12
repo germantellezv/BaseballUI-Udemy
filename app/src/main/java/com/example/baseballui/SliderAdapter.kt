@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
 import androidx.viewpager.widget.PagerAdapter
+import kotlinx.android.synthetic.main.slide_layout.view.*
 
 class SliderAdapter (var context:Context):PagerAdapter() {
 
@@ -29,7 +30,32 @@ class SliderAdapter (var context:Context):PagerAdapter() {
     }
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
-        val view = layoutInflater.inflate(R.layout.sli)
+        val view = layoutInflater.inflate(R.layout.slide_layout,container,false)
+        view.slideLayoutRelativeLayout.setBackgroundResource(slide_background[position])
+        view.slideLayoutImageView.setImageResource(slide_images[position])
+        view.slideLayoutTv1.setText(slide_headings[position])
+        view.slideLayoutTv2.setText(slide_descriptions[position])
+        if (position == 0) {
+            view.slideLayoutTvPoint1.setTextColor(context.resources.getColor(R.color.colorWhite))
+            view.slideLayoutTvPoint2.setTextColor(context.resources.getColor(R.color.colorTransparentWhite))
+            view.slideLayoutTvPoint3.setTextColor(context.resources.getColor(R.color.colorTransparentWhite))
+        }
+        if (position == 1) {
+            view.slideLayoutTvPoint1.setTextColor(context.resources.getColor(R.color.colorTransparentWhite))
+            view.slideLayoutTvPoint2.setTextColor(context.resources.getColor(R.color.colorWhite))
+            view.slideLayoutTvPoint3.setTextColor(context.resources.getColor(R.color.colorTransparentWhite))
+        }
+        if (position == 2) {
+            view.slideLayoutTvPoint1.setTextColor(context.resources.getColor(R.color.colorTransparentWhite))
+            view.slideLayoutTvPoint2.setTextColor(context.resources.getColor(R.color.colorTransparentWhite))
+            view.slideLayoutTvPoint3.setTextColor(context.resources.getColor(R.color.colorWhite))
+        }
+        container.addView(view)
+        return view
+    }
+
+    override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
+        container.removeView(`object` as (RelativeLayout))
     }
 
 }

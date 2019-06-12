@@ -8,6 +8,7 @@
     <ImageView
             android:id="@+id/slideLayoutImageView"
             android:src="@drawable/ic_baseball_intro2"
+            android:tint="@color/colorWhite"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
             android:layout_width="100dp"
